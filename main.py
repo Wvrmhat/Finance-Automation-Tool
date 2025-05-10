@@ -131,6 +131,15 @@ def main():
                     hide_index=True
                 )
                 
+                fig = px.pie(
+                    category_totals,
+                    values="Amount",
+                    names="Category",
+                    title="Expense by Category"
+                )
+                # For showing the figure on screen
+                st.plotly_chart(fig, use_container_width=True)
+                
             with tab2:
                 st.write(credits_df)
 
