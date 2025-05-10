@@ -93,7 +93,7 @@ def main():
                     st.session_state.debits_df[["Date", "Details", "Amount", "Category"]],
                     column_config={
                         "Date": st.column_config.DateColumn("Date", format="DD/MM/YYYY"),
-                        "Amount": st.column_config.NumberColumn("Amount", format="%.2f AED"),
+                        "Amount": st.column_config.NumberColumn("Amount", format="%.2f R"),
                         "Category": st.column_config.SelectboxColumn(
                             "Category",
                             options=list(st.session_state.categories.keys()) 
@@ -114,8 +114,36 @@ def main():
                         details = row["Details"]
                         st.session_state.debits_df.at[idx, "Category"] = new_category
                         add_keyword_to_category(new_category, details) 
+                        
+                        
+                st.subheader("Expense Summary")
+                
+                # takes dataframe and stores it in the state, groups it by category, takes the amount of categories, sums them and resets the index    
+                category_totals = st.session_state.debits_df.groupby("Category")["Amount"].sum().reset_index()
+                category_totals = category_totals.sort_values("Amount", ascending=False)
+                
+                st.dataframe(
+                    category_totals,
+                    column_config={
+                        "Amount": st.column_config.NumberColumn("Amount", format="%.2f R")
+                    },
+                    use_container_width=True,
+                    hide_index=True
+                )
+                
+                fig = px.pie(
+                    category_totals,
+                    values="Amount",
+                    names="Category",
+                    title="Expense by Category"
+                )
+                # For showing the figure on screen
+                st.plotly_chart(fig, use_container_width=True)
                 
             with tab2:
+                st.subheader("Payment Summary")
+                total_payments = credits_df["Amount"].sum()
+                st.metric("Total Payments", f"R {total_payments:,.2f}")
                 st.write(credits_df)
 
     # if uploaded_file_PDF is not None:
