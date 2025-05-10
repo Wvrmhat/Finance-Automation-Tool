@@ -21,13 +21,31 @@ def save_categories():
     with open(category_file, "w") as f:
         json.dump(st.session_state.categories, f)
     
+# Categorizing based on categories 
+def categorize_transactions(df):
+    df["Category"] = "Uncategorized"
+    
+    for category, keywords in st.session_state.categories.items():
+        if category == "Uncategorized" or not keywords:
+            continue
+        
+        # creating new list of keywords where they are converted to lowercase and stripping them if there are any spaces
+        lowered_keywords = [keyword.lower().strip() for keyword in keywords]
+        
+        # iterates over each row in our dataframe similarly to a list 
+        for idx, row in df.iterrows():
+            details = row["Details"].lower().strip()
+            if details in lowered_keywords:
+                df.at[idx, "Category"] = category
+    return df 
+    
 def load_transactions(file):
     try:
         df = pd.read_csv(file)
         df.columns = [col.strip() for col in df.columns]
         df["Amount"] = df["Amount"].str.replace(",", "").astype(float)
-        df["Date"] = pd.to_datetimeD(df["Date"], format ="%d %b %Y")
-        return df 
+        df["Date"] = pd.to_datetime(df["Date"], format ="%d %b %Y")
+        return categorize_transactions(df)
     
     except Exception as e:
         st.error(f"Error processing file: {str(e)}")
@@ -50,6 +68,15 @@ def main():
             
             tab1, tab2 = st.tabs(["Expenses (Debits)", "Payments (Credits)"])
             with tab1:
+                new_category = st.text_input("New Category Name")
+                add_button = st.button("Add Category")
+                
+                if add_button and new_category:
+                    if new_category not in st.session_state.categories:
+                        st.session_state.categories[new_category] = []
+                        save_categories()
+                        st.rerun()
+                        
                 st.write(debits_df)
                 
             with tab2:
