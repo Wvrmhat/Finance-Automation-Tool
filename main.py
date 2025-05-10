@@ -50,9 +50,18 @@ def load_transactions(file):
     except Exception as e:
         st.error(f"Error processing file: {str(e)}")
         return None
+    
+# Appends keyword into list and saves it if it is a valid keywords
+def add_keyword_to_category(category, keyword):
+    keyword = keyword.strip()
+    if keyword and keyword not in st.session_state.categories[category]:
+        st.session_state.categories[category].append(keyword) 
+        save_categories()
+        return True  
+
+    return False 
 
 # File uploading
-
 def main():
     st.title("Finance Dashboard")
 
