@@ -125,7 +125,7 @@ def main():
                 st.dataframe(
                     category_totals,
                     column_config={
-                        "Amount": st.column_config.NumberColumn("Amount", format="%2f R")
+                        "Amount": st.column_config.NumberColumn("Amount", format="%.2f R")
                     },
                     use_container_width=True,
                     hide_index=True
@@ -141,6 +141,9 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
                 
             with tab2:
+                st.subheader("Payment Summary")
+                total_payments = credits_df["Amount"].sum()
+                st.metric("Total Payments", f"R {total_payments:,.2f}")
                 st.write(credits_df)
 
     # if uploaded_file_PDF is not None:
