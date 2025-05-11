@@ -3,7 +3,7 @@ name: Parallelize Jobs
 on:
     push:
         branches:
-            - main
+            # - main
             - workflows
     pull_request:
 
