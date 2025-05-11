@@ -14,6 +14,6 @@ COPY . .
 
 EXPOSE 8501
 
-ENTRYPOINT ["streamlit", "run"]
-CMD ["main.py"]
+# ENTRYPOINT ["streamlit", "run"]
+CMD ["streamlit", "run", "main.py"]
 
