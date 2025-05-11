@@ -40,6 +40,7 @@ jobs:
             - name: Build and Push to GHCR 
               uses: docker/build-push-action@v6
               with: 
+                context: .
                 push: true
                 tags: ghcr.io/wvrmhat/finance-automation-tool:${{ github.run_id }}
                 cache-from: type=gha
