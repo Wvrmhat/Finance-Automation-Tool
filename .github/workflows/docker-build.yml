@@ -5,6 +5,7 @@ on:
         branches:
             - main
             - workflows
+    
     pull_request:
 
 jobs:
@@ -17,12 +18,7 @@ jobs:
             packages: write 
 
         steps:
-
-            - name: Checkout repository
-              uses: actions/checkout@v4
-              with:
-                token: ${{ secrets.GITHUB_TOKEN }}
-              
+  
             - name: Setting up Docker Buildx
               uses: docker/setup-buildx-action@v3
 
