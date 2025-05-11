@@ -64,7 +64,7 @@ jobs:
                 password: ${{ secrets.GITHUB_TOKEN }}
                 
             - name: Unit Testing in Docker 
-              run: docker run --rm ghcr,io/wvrmhat/finance-automation-tool:"$GITHUB_RUN_ID" echo "Run test commands here"
+              run: docker run --rm ghcr.io/wvrmhat/finance-automation-tool:"$GITHUB_RUN_ID" echo "Run test commands here"
 
     cve-scanning:
         name: Scanning image with Trivy
