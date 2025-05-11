@@ -3,7 +3,7 @@ name: Parallelize Jobs
 on:
     push:
         branches:
-            # - main
+            - main
             - workflows
     pull_request:
 
@@ -18,8 +18,10 @@ jobs:
 
         steps:
 
-            # - name: Checkout repository
-            #   uses: actions/checkout@v4
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
               
             - name: Setting up Docker Buildx
               uses: docker/setup-buildx-action@v3
