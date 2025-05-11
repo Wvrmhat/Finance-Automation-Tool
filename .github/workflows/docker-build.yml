@@ -41,7 +41,7 @@ jobs:
               uses: docker/build-push-action@v6
               with: 
                 push: true
-                tags: ghcr.io/wvrmhat/Finance-Automation-Tool:${{ github.run_id }}
+                tags: ghcr.io/wvrmhat/finance-automation-tool:${{ github.run_id }}
                 cache-from: type=gha
                 cache-to: type=gha,mode=max
                 platforms: linux/amd64 
@@ -65,7 +65,7 @@ jobs:
                 password: ${{ secrets.GITHUB_TOKEN }}
                 
             - name: Unit Testing in Docker 
-              run: docker run --rm ghcr,io/wvrmhat/Finance-Automation-Tool:"$GITHUB_RUN_ID" echo "Run test commands here"
+              run: docker run --rm ghcr,io/wvrmhat/finance-automation-tool:"$GITHUB_RUN_ID" echo "Run test commands here"
 
     cve-scanning:
         name: Scanning image with Trivy
@@ -95,12 +95,12 @@ jobs:
                 password: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Pull image to scan
-              run: docker pull ghcr.io/wvrmhat/Finance-Automation-Tool:"$GITHUB_RUN_ID"
+              run: docker pull ghcr.io/wvrmhat/finance-automation-tool:"$GITHUB_RUN_ID"
 
             - name: Running Trivvy for all CVEs (non-blocking)
               uses: aquasecurity/Trivy-action@master 
               with:
-                image-ref: ghcr.io/wvrmhat/Finance-Automation-Tool:${{ github.run_id }}
+                image-ref: ghcr.io/wvrmhat/finance-automation-tool:${{ github.run_id }}
                 format: table
                 exit-code: 0
 
@@ -141,7 +141,7 @@ jobs:
               id: docker_meta
               uses: docker/metadata-action@v5
               with:
-                images: wvrmhat/Finance-Automation-Tool,ghcr.io/wvrmhat/Finance-Automation-Tool
+                images: wvrmhat/finance-automation-tool,ghcr.io/wvrmhat/finance-automation-tool
                 flavor: | 
                     latest=false
                 tags: |
