@@ -16,13 +16,13 @@ state
 - Plotly used for a visual representation of expenses 
 - JSON used to save category data and track keywords
 
-![Main page](https://github.com/Wvrmhat/Finance-Automation-Tool/screenshots/image1.png)
+![Main page](https://github.com/Wvrmhat/Finance-Automation-Tool/blob/main/screenshots/image1.png)
 
-![Categories](https://github.com/Wvrmhat/Finance-Automation-Tool/screenshots/image2.png)
+![Categories](https://github.com/Wvrmhat/Finance-Automation-Tool/blob/main/screenshots/image2.png)
 
-![Expense Summary](https://github.com/Wvrmhat/Finance-Automation-Tool/screenshots/image3.png)
+![Expense Summary](https://github.com/Wvrmhat/Finance-Automation-Tool/blob/main/screenshots/image3.png)
 
-![Payment Summary](https://github.com/Wvrmhat/Finance-Automation-Tool/screenshots/image4.png)
+![Payment Summary](https://github.com/Wvrmhat/Finance-Automation-Tool/blob/main/screenshots/image4.png)
 
 ---
 > [!NOTE]
