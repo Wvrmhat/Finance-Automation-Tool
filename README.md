@@ -1,7 +1,7 @@
 [![Parallelize Jobs](https://github.com/Wvrmhat/Finance-Automation-Tool/actions/workflows/docker-build.yml/badge.svg)](https://github.com/Wvrmhat/Finance-Automation-Tool/actions/workflows/docker-build.yml)
 
 # Finance-Automation-Tool
-Finance Dashboard that takes in a CSV of a banking statement, and displays it in a more clean and readable format. Supports custom expense categories and automatic tagging based off keywords. Also includes a graphical summary of expenses to display how money was being used.
+Finance Dashboard that takes in a CSV of a banking statement, and displays it in a more clean and readable format. Supports custom expense categories and automatic tagging based off keywords. Also includes a graphical summary of expenses to display how money was being used..
 
 ## Features
 
